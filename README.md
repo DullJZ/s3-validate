@@ -1,5 +1,7 @@
 # s3-validate
 
+[中文](README-zh.md) | English
+
 `s3-validate` is a tiny Golang package that helps services verify incoming Amazon S3 requests signed with Signature Version 4. It works with both header-based signatures and pre-signed URLs, making it suitable for APIs that need to authenticate uploads or downloads initiated by clients.
 
 ## Features

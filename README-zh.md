@@ -1,5 +1,7 @@
 # s3-validate
 
+中文 | [English](README.md)
+
 `s3-validate` 是一个轻量级的 Golang 包，用于在服务端校验使用 AWS Signature Version 4 签名的 S3 请求。它同时支持基于请求头的签名与预签名 URL，适合需要验证客户端发起上传或下载请求的后端服务。
 
 ## 功能特性
