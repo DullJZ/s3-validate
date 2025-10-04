@@ -13,7 +13,7 @@ import (
 
 // buildCanonicalRequestHash builds and hashes the canonical request.
 func buildCanonicalRequestHash(r *http.Request, signedHeaders []string, payloadHash string, source SignatureSource) (string, []string, error) {
-	canonicalURI := canonicalizeURI(r.URL.EscapedPath())
+	canonicalURI := canonicalizeURI(r.URL.Path)
 	canonicalQuery := canonicalizeQuery(r.URL.RawQuery, source)
 	canonicalHeaders, err := canonicalizeHeaders(r, signedHeaders)
 	if err != nil {
