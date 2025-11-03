@@ -70,6 +70,30 @@ func TestAWSSDKComparison(t *testing.T) {
 			body:        `{"key":"value"}`,
 			payloadHash: "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a", // SHA256 of JSON
 		},
+		{
+			name:        "GET request with trailing slash",
+			method:      "GET",
+			url:         "https://examplebucket.s3.amazonaws.com/folder/",
+			headers:     map[string]string{},
+			body:        "",
+			payloadHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+		},
+		{
+			name:        "GET request without trailing slash",
+			method:      "GET",
+			url:         "https://examplebucket.s3.amazonaws.com/folder",
+			headers:     map[string]string{},
+			body:        "",
+			payloadHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+		},
+		{
+			name:        "GET request with nested path and trailing slash",
+			method:      "GET",
+			url:         "https://examplebucket.s3.amazonaws.com/folder/subfolder/",
+			headers:     map[string]string{},
+			body:        "",
+			payloadHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+		},
 	}
 
 	for _, tt := range tests {
@@ -183,6 +207,18 @@ func TestAWSSDKPresignedURL(t *testing.T) {
 			method:  "PUT",
 			url:     "https://examplebucket.s3.amazonaws.com/upload.txt",
 			expires: 15 * time.Minute,
+		},
+		{
+			name:    "GET presigned URL with trailing slash",
+			method:  "GET",
+			url:     "https://examplebucket.s3.amazonaws.com/folder/",
+			expires: 1 * time.Hour,
+		},
+		{
+			name:    "GET presigned URL without trailing slash",
+			method:  "GET",
+			url:     "https://examplebucket.s3.amazonaws.com/folder",
+			expires: 1 * time.Hour,
 		},
 	}
 
