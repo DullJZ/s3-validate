@@ -133,9 +133,8 @@ func canonicalizeURI(path string) string {
 	for i, segment := range segments {
 		segments[i] = uriEncode(segment, true)
 	}
-	if strings.HasSuffix(path, "/") {
-		return strings.Join(segments, "/") + "/"
-	}
+	// strings.Split preserves trailing slash as an empty last element,
+	// so strings.Join will automatically restore it. No need to add it back.
 	return strings.Join(segments, "/")
 }
 
